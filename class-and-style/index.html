@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div class="static" v-bind:class="classObject" v-bind:style="styleObject">hello</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                isActive: true,
+                error: null,
+                color: 'red',
+                fontSize: 13,
+            },
+            computed: {
+                classObject: function() {
+                    return {
+                        active: this.isActive && !this.hasError,
+                        'text-danger': this.error && this.error.type === 'fatal',
+                    };
+                },
+                styleObject: function() {
+                    return {
+                        color: this.color,
+                        fontSize: this.fontSize + 'px',
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
